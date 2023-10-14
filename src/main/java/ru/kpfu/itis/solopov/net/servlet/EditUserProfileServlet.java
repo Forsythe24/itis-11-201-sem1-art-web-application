@@ -38,11 +38,11 @@ public class EditUserProfileServlet extends HttpServlet {
         userDto.setUsername(req.getParameter("username"));
         userDto.setEmail(req.getParameter("email"));
         userDto.setGender(req.getParameter("gender"));
-        userDto.setBirthDate(LocalDate.parse(req.getParameter("birth_date")));
 
-//        httpSession.setAttribute("user", userDto);
+        LocalDate birthDate = LocalDate.parse(req.getParameter("birth_date"));
+        userDto.setBirthDate(birthDate);
 
-//        httpSession.setAttribute("birth_date", "2018-07-22");
+
 
 
         userService.update(userDto);

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Date;
 
 @WebServlet(name = "authInfoServlet", urlPatterns = "/authinfo")
 public class AuthenticationInfoServlet extends HttpServlet {
@@ -39,6 +38,7 @@ public class AuthenticationInfoServlet extends HttpServlet {
         UserDto userDto = new UserDto(username, email, gender, login, password, birthDate);
 
         httpSession.setAttribute("user", userDto);
+        httpSession.setAttribute("dateOfBirth", birthDate.toString());
 
         userService.save(new User(username, email, gender, login, password, birthDate));
 

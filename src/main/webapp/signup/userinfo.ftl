@@ -39,7 +39,7 @@
         <br>
 
         <strong>Your date of birth:</strong>
-        <input type="date" name="birth_date"/>
+        <input type="date" name="birth_date" value = "1970-01-01" />
 
         <br>
         <br>
