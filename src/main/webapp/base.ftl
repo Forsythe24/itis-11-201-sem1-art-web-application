@@ -1,13 +1,13 @@
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Librarea</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <title><@title></@title></title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg py-2" style="background-color: #D2B48C;">
+        <nav class="navbar navbar-expand-lg py-2 fixed-top" style="background-color: #D2B48C;">
             <a class="navbar-brand" href="#" style="font-size: 200%">
                 <img src="https://www.freepnglogos.com/uploads/book-png/blank-book-on-circle-design-23.png" width="45" height="45" class="d-inline-block align-top" alt=""/>
                 LibrArea
