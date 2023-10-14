@@ -6,41 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Scrolling Nav - Start Bootstrap Template</title>
 </head>
 
 <#macro title>Home page</#macro>
 <body id="page-top">
-<!-- Navigation-->
-<#macro navbar>
-    <button
-            class="navbar-toggler"
-            type="button"
-            data-mdb-toggle="collapse"
-            data-mdb-target="#navbarRightAlign"
-            aria-controls="navbarRightAlign"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-    >
-        <i class="fas fa-bars"></i>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarRightAlign">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/userinfo">Sign Up</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/signin">Sign In</a>
-            </li>
-        </ul>
-    </div>
-    </div>
-</#macro>
-<#macro content>
-</#macro>
-<div class="container-fluid" style="background-color: #D2B48C; background-image: url('https://images.wallpaperscraft.com/image/single/pen_petals_letter_189319_1920x1080.jpg'); background-repeat: no-repeat; background-size: 100%">
-
+<div class="container-fluid" style="background-color: #D2B48C; background-image: url('https://images.wallpaperscraft.com/image/single/pen_petals_letter_189319_1920x1080.jpg'); background-repeat: no-repeat; background-size: 100%;">
     <div class = "container-fluid" >
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center">
@@ -59,8 +29,8 @@
                 </div>
             </div>
         </div>
-
     </div>
+
     <section id="about">
         <div class="container-fluid">
             <div class="row gx-4 justify-content-center">
@@ -78,6 +48,5 @@
         </div>
     </section>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

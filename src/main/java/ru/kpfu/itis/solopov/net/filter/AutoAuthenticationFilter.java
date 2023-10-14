@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName="autoAuthenticationFilter", urlPatterns = "/ignin")
+@WebFilter(filterName="autoAuthenticationFilter", urlPatterns = "/signin")
 public class AutoAuthenticationFilter implements Filter {
     UserService userService = new UserServiceImpl();
     @Override
@@ -41,6 +41,7 @@ public class AutoAuthenticationFilter implements Filter {
                     UserDto userDto = userService.get(c.getValue());
                     httpSession.setAttribute("user", userDto);
                     httpSession.setAttribute("dateOfBirth", userDto.getBirthDate().toString());
+                    httpSession.setAttribute("userAuthorized", true);
 
                     httpServletResponse.sendRedirect("/profile");
 

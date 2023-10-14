@@ -4,8 +4,6 @@
 <#macro title>User Profile</#macro>
 <#macro header>YOUR PROFILE</#macro>
 <body>
-<#macro navbar></#macro>
-    <#macro content>
         Username: ${user.username}
         <br>
         <br>
@@ -22,6 +20,5 @@
         <br>
         <br>
         <a href = "/logout">LOG OUT</a>
-    </#macro>
 </body>
 </html>

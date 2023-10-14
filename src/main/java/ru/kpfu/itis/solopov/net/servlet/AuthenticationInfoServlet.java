@@ -39,6 +39,7 @@ public class AuthenticationInfoServlet extends HttpServlet {
 
         httpSession.setAttribute("user", userDto);
         httpSession.setAttribute("dateOfBirth", birthDate.toString());
+        httpSession.setAttribute("userAuthorized", true);
 
         userService.save(new User(username, email, gender, login, password, birthDate));
 
