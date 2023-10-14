@@ -12,13 +12,6 @@ import java.io.IOException;
 public class HomePageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        HttpSession httpSession = req.getSession(false);
-//        if (httpSession != null) {
-//            Boolean isUserAuthorized = (Boolean) httpSession.getAttribute("userAuthorized");
-//            if (isUserAuthorized == null) {
-//                httpSession.setAttribute("userAuthorized", false);
-//            }
-//        }
         resp.sendRedirect("homepage.ftl");
     }
 
