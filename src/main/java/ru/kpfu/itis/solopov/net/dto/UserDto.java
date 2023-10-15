@@ -11,17 +11,19 @@ public class UserDto {
     private String password;
     private LocalDate birthDate;
     private Long id;
+    private String genre;
 
-    public UserDto(String username, String email, String gender, String login, String password, LocalDate birthDate) {
+    public UserDto(String username, String email, String gender, String login, String password, LocalDate birthDate, String genre) {
         this.username = username;
         this.email = email;
         this.gender = gender;
         this.login = login;
         this.password = password;
         this.birthDate = birthDate;
+        this.genre = genre;
     }
 
-    public UserDto(String username, String email, String gender, String login, String password, LocalDate birthDate, Long id) {
+    public UserDto(String username, String email, String gender, String login, String password, LocalDate birthDate, String genre, Long id) {
         this.username = username;
         this.email = email;
         this.gender = gender;
@@ -29,6 +31,7 @@ public class UserDto {
         this.password = password;
         this.birthDate = birthDate;
         this.id = id;
+        this.genre = genre;
     }
 
     public String getUsername() {
@@ -84,5 +87,12 @@ public class UserDto {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 }

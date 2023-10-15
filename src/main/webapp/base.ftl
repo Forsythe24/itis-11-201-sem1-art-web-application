@@ -40,10 +40,10 @@
                     <div class="collapse navbar-collapse" id="navbarRightAlign">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/userinfo">Sign Up</a>
+                                <a class="nav-link active" aria-current="page" href="/userinfo"><strong>Sign Up</strong></a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/signin">Sign In</a>
+                            <li class="nav-item" style="margin-right: 1rem;">
+                                <a class="nav-link active" aria-current="page" href="/signin"><strong>Sign In</strong></a>
                             </li>
                         </ul>
                     </div>

@@ -26,6 +26,7 @@ public class UserDaoImpl implements Dao<User> {
                     resultSet.getString("login"),
                     resultSet.getString("password"),
                     resultSet.getDate("birth_date").toLocalDate(),
+                    resultSet.getString("genre"),
                     resultSet.getLong("id")
             );
             return user;
@@ -51,6 +52,7 @@ public class UserDaoImpl implements Dao<User> {
                                     resultSet.getString("login"),
                                     resultSet.getString("password"),
                                     resultSet.getDate("birth_date").toLocalDate(),
+                                    resultSet.getString("genre"),
                                     resultSet.getLong("id")
                             )
                     );
@@ -64,7 +66,7 @@ public class UserDaoImpl implements Dao<User> {
 
     @Override
     public void save(User user) {
-        String sql = "insert into users (username, email, gender, login, password, birth_date) values (?, ?, ?, ?, ?, ?);";
+        String sql = "insert into users (username, email, gender, login, password, birth_date, genre) values (?, ?, ?, ?, ?, ?, ?);";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, user.getUsername());
@@ -72,7 +74,8 @@ public class UserDaoImpl implements Dao<User> {
             preparedStatement.setString(3, user.getGender());
             preparedStatement.setString(4, user.getLogin());
             preparedStatement.setString(5, user.getPassword());
-            preparedStatement.setDate(6, Date.valueOf(user.getBirthDate()));
+            preparedStatement.setString(6, user.getGenre());
+            preparedStatement.setDate(7, Date.valueOf(user.getBirthDate()));
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -82,7 +85,7 @@ public class UserDaoImpl implements Dao<User> {
 
     @Override
     public void update(User user) {
-        String sql = "UPDATE users set username = ?, email = ?, gender = ?, login = ?, password = ?, birth_date = ? where id = ?";
+        String sql = "UPDATE users set username = ?, email = ?, gender = ?, login = ?, password = ?, birth_date = ?, genre = ? where id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, user.getUsername());
@@ -91,7 +94,8 @@ public class UserDaoImpl implements Dao<User> {
             preparedStatement.setString(4, user.getLogin());
             preparedStatement.setString(5, user.getPassword());
             preparedStatement.setDate(6, Date.valueOf(user.getBirthDate()));
-            preparedStatement.setLong(7, user.getId());
+            preparedStatement.setString(7, user.getGenre());
+            preparedStatement.setLong(8, user.getId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

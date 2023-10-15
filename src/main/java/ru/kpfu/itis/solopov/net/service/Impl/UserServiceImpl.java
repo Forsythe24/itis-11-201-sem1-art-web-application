@@ -16,14 +16,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDto> getAll() {
         return dao.getAll().stream().map(
-                u -> new UserDto(u.getUsername(), u.getEmail(), u.getGender(), u.getLogin(), u.getPassword(), u.getBirthDate(), u.getId())
+                u -> new UserDto(u.getUsername(), u.getEmail(), u.getGender(), u.getLogin(), u.getPassword(), u.getBirthDate(), u.getGenre(), u.getId())
         ).collect(Collectors.toList());
     }
 
     @Override
     public UserDto get(String login) {
         User user = dao.get(login);
-        return new UserDto(user.getUsername(), user.getEmail(), user.getGender(), user.getLogin(), user.getPassword(), user.getBirthDate(), user.getId());
+        return new UserDto(user.getUsername(), user.getEmail(), user.getGender(), user.getLogin(), user.getPassword(), user.getBirthDate(), user.getGenre(), user.getId());
     }
 
     @Override
@@ -39,6 +39,7 @@ public class UserServiceImpl implements UserService {
         user.setEmail(userDto.getEmail());
         user.setGender(userDto.getGender());
         user.setBirthDate(userDto.getBirthDate());
+        user.setGenre(userDto.getGenre());
         dao.update(user);
     }
 }

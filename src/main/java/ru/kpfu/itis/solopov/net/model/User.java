@@ -19,42 +19,28 @@ public class User {
     private String gender;
     private LocalDate birthDate;
     private Long id;
+    private String genre;
 
-    public User(String username, String email, String gender, String login, String password, LocalDate birthDate, Long id) {
+    public User(String username, String email, String gender, String login, String password, LocalDate birthDate, String genre, Long id) {
         this.username = username;
         this.email = email;
         this.gender = gender;
         this.login = login;
         this.password = password;
         this.birthDate = birthDate;
+        this.genre = genre;
         this.id = id;
     }
 
-    public User(String username, String email, String gender, String login, String password, LocalDate birthDate) {
+    public User(String username, String email, String gender, String login, String password, LocalDate birthDate, String genre) {
         this.username = username;
         this.email = email;
         this.gender = gender;
         this.login = login;
         this.password = password;
         this.birthDate = birthDate;
+        this.genre = genre;
     }
-
-//    public User(int id, String username, String email, String gender, String login, String password) {
-//        this.id = id;
-//        this.username = username;
-//        this.email = email;
-//        this.gender = gender;
-//        this.login = login;
-//        this.password = password;
-//    }
-
-//    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
 
     public String getUsername() {
         return username;
@@ -109,5 +95,13 @@ public class User {
     }
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 }

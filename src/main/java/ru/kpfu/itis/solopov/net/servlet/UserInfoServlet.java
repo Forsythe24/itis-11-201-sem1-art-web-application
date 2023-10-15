@@ -21,6 +21,7 @@ public class UserInfoServlet extends HttpServlet {
         String email = req.getParameter("email");
         String gender = req.getParameter("gender");
         String birthDate = req.getParameter("birth_date");
+        String genre = req.getParameter("genre");
 
 
 
@@ -30,6 +31,7 @@ public class UserInfoServlet extends HttpServlet {
         httpSession.setAttribute("email", email);
         httpSession.setAttribute("gender", gender);
         httpSession.setAttribute("birth_date", birthDate);
+        httpSession.setAttribute("genre", genre);
 
         req.getRequestDispatcher("signup/authenticationinfo.ftl").forward(req, resp);
     }

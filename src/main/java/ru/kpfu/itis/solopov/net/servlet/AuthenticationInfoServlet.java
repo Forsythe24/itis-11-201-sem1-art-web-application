@@ -32,16 +32,17 @@ public class AuthenticationInfoServlet extends HttpServlet {
         String username = (String) httpSession.getAttribute("username");
         String email = (String) httpSession.getAttribute("email");
         String gender = (String) httpSession.getAttribute("gender");
+        String genre = (String) httpSession.getAttribute("genre");
         LocalDate birthDate = LocalDate.parse((CharSequence)httpSession.getAttribute("birth_date"));
 
 
-        UserDto userDto = new UserDto(username, email, gender, login, password, birthDate);
+        UserDto userDto = new UserDto(username, email, gender, login, password, birthDate, genre);
 
         httpSession.setAttribute("user", userDto);
         httpSession.setAttribute("dateOfBirth", birthDate.toString());
         httpSession.setAttribute("userAuthorized", true);
 
-        userService.save(new User(username, email, gender, login, password, birthDate));
+        userService.save(new User(username, email, gender, login, password, birthDate, genre));
 
         resp.sendRedirect("/profile");
     }

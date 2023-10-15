@@ -20,6 +20,13 @@ public class EditUserProfileServlet extends HttpServlet {
     UserService userService = new UserServiceImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession httpSession = req.getSession(false);
+
+        String birthDate = req.getParameter("date_of_birth");
+        if (birthDate != null) {
+            httpSession.setAttribute("dateOfBirth", birthDate);
+        }
+
         resp.sendRedirect("edituserprofile.ftl");
     }
 
@@ -38,12 +45,12 @@ public class EditUserProfileServlet extends HttpServlet {
         userDto.setUsername(req.getParameter("username"));
         userDto.setEmail(req.getParameter("email"));
         userDto.setGender(req.getParameter("gender"));
+        userDto.setGenre(req.getParameter("genre"));
 
         LocalDate birthDate = LocalDate.parse(req.getParameter("birth_date"));
         userDto.setBirthDate(birthDate);
 
-
-
+        httpSession.setAttribute("dateOfBirth", userDto.getBirthDate().toString());
 
         userService.update(userDto);
     }
