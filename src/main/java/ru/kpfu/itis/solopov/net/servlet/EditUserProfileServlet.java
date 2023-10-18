@@ -1,10 +1,8 @@
 package ru.kpfu.itis.solopov.net.servlet;
 
 import ru.kpfu.itis.solopov.net.dto.UserDto;
-import ru.kpfu.itis.solopov.net.model.User;
 import ru.kpfu.itis.solopov.net.service.Impl.UserServiceImpl;
 import ru.kpfu.itis.solopov.net.service.UserService;
-import ru.kpfu.itis.solopov.net.util.PasswordUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,14 +18,8 @@ public class EditUserProfileServlet extends HttpServlet {
     UserService userService = new UserServiceImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession httpSession = req.getSession(false);
 
-        String birthDate = req.getParameter("date_of_birth");
-        if (birthDate != null) {
-            httpSession.setAttribute("dateOfBirth", birthDate);
-        }
-
-        resp.sendRedirect("edituserprofile.ftl");
+        req.getRequestDispatcher("edituserprofile.ftl").forward(req, resp);
     }
 
     @Override

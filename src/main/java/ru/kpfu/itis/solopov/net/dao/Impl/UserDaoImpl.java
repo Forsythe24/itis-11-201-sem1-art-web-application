@@ -66,7 +66,7 @@ public class UserDaoImpl implements Dao<User> {
 
     @Override
     public void save(User user) {
-        String sql = "insert into users (username, email, gender, login, password, birth_date, genre) values (?, ?, ?, ?, ?, ?, ?);";
+        String sql = "insert into users (username, email, gender, login, password, genre, birth_date) values (?, ?, ?, ?, ?, ?, ?);";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, user.getUsername());

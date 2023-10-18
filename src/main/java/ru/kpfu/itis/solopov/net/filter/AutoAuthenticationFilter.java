@@ -43,14 +43,16 @@ public class AutoAuthenticationFilter implements Filter {
                     httpSession.setAttribute("dateOfBirth", userDto.getBirthDate().toString());
                     httpSession.setAttribute("userAuthorized", true);
 
-                    httpServletResponse.sendRedirect("/profile");
-
                     isUserFound = true;
-                    break;
+                }
+                if (c.getName().equals("image")) {
+                    httpSession.setAttribute("image", c.getValue());
                 }
             }
         }
-        if (!isUserFound) {
+        if (isUserFound) {
+            httpServletResponse.sendRedirect("/profile");
+        } else {
             filterChain.doFilter(servletRequest, servletResponse);
         }
     }

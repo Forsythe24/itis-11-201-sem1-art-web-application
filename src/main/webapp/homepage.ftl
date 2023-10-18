@@ -19,7 +19,7 @@
                         <div class="col-lg-8">
                             <header class="text-white">
                                 <div class="container px-4 text-center">
-                                    <h1 class="fw-bolder" style="font-size: 400%">LibrArea</h1>
+                                    <h1 class="fw-bolder" style="font-size: 400%; margin-top: 1.5rem">LibrArea</h1>
                                     <p class="lead">The place where authors and readers get to meet</p>
                                     <a class="btn btn-lg" href="#about" style="background-color: #D2B48C">About us</a>
                                 </div>

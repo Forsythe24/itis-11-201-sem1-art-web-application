@@ -22,8 +22,10 @@ public class LogOutServlet extends HttpServlet {
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             for (Cookie c: cookies) {
-                c.setMaxAge(0);
-                resp.addCookie(c);
+                if (!c.getName().equals("image")) {
+                    c.setMaxAge(0);
+                    resp.addCookie(c);
+                }
             }
         }
 

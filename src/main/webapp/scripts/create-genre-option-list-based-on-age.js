@@ -8,7 +8,7 @@ const genrelist = ["Adventure Fiction", "Arts & New Media", "Biographies & Memoi
 createOptions()
 function createOptions (){
     select = document.getElementById("select-genre");
-    genre = select.value
+    // genre = select.value
     removeOptions(select)
     var length = genrelist.length
     date = document.getElementById("birth-date")
@@ -19,9 +19,9 @@ function createOptions (){
         var opt = document.createElement('option')
         opt.text = genrelist[i]
         select.appendChild(opt);
-        if (genre == genrelist[i]) {
-            opt.selected = true
-        }
+        // if (genre == genrelist[i]) {
+        //     opt.selected = true
+        // }
     }
     var other = document.createElement('option')
     other.text = "Other"

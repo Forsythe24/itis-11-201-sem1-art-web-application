@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.util.Arrays;
 
 @WebServlet(name = "signInServlet", urlPatterns = "/signin")
 public class SignInServlet extends HttpServlet {
@@ -28,6 +29,9 @@ public class SignInServlet extends HttpServlet {
 
         HttpSession httpSession = req.getSession();
 
+        Cookie[] cookies = req.getCookies();
+
+
         if (userDto != null) {
             httpSession.setAttribute("user", userDto);
             httpSession.setAttribute("dateOfBirth", userDto.getBirthDate().toString());
@@ -35,6 +39,13 @@ public class SignInServlet extends HttpServlet {
 
             if (rememberMe != null) {
                 setAutoAuthCookie(resp, login);
+            }
+
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("image")) {
+                    resp.addCookie(cookie);
+                    httpSession.setAttribute("image", cookie.getValue());
+                }
             }
 
             resp.sendRedirect("/profile");
@@ -48,6 +59,7 @@ public class SignInServlet extends HttpServlet {
         cookie.setMaxAge(60 * 60 * 24 * 365 * 10);
         resp.addCookie(cookie);
     }
+
 
     private UserDto authenticate(String login, String password) {
         UserDto userDto = userService.get(login);

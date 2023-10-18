@@ -8,16 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "homePageServlet", urlPatterns = "/homepage")
-public class HomePageServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/ajax/setbirthdate")
+public class AjaxSetBirthDateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("homepage.ftl").forward(req, resp);
+        HttpSession httpSession = req.getSession(false);
 
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        String birthDate = req.getParameter("birth_date");
+        if (birthDate != null) {
+            httpSession.setAttribute("dateOfBirth", birthDate);
+        }
     }
 }

@@ -2,12 +2,12 @@
 <#include "base.ftl">
 <#include "/resources/css/styles.css">
     <body>
-        <#macro title>EDITING PROFILE</#macro>
+        <#macro title>editing profile</#macro>
         <div class="container-fluid" style="background-color: #954535;">
             <div class="container mt-5" style="height: 100%";>
                 <div class="row">
                     <div class="col-md-3 border-right">
-                        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"><span class="font-weight-bold">${user.username}</span><span class="text-black-50">${user.email}</span><span> </span></div>
+                        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" height="150px" src=${image}><span class="font-weight-bold">${user.username}</span><span class="text-black-50">${user.email}</span><span> </span></div>
                     </div>
                     <div class="col-md-7 border-right">
                         <form action="editprofile" method="post">
@@ -55,13 +55,12 @@
                 </div>
             </div>
         </div>
+
         <script src="/scripts/create-genre-option-list-based-on-age.js"></script>
-
-
         <script>
             $("#birth-date").change(function(){
                 let dateOfBirth= $("#birth-date").val();
-                $.get("/editprofile?date_of_birth=" + dateOfBirth,
+                $.get("/ajax/setbirthdate?birth_date=" + dateOfBirth,
                     createOptions())
             });
         </script>

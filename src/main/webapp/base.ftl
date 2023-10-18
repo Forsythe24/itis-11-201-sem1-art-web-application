@@ -40,10 +40,10 @@
                     <div class="collapse navbar-collapse" id="navbarRightAlign">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/userinfo"><strong>Sign Up</strong></a>
+                                <a class="nav-link active" aria-current="page" href="/userinfo">Sign Up</a>
                             </li>
                             <li class="nav-item" style="margin-right: 1rem;">
-                                <a class="nav-link active" aria-current="page" href="/signin"><strong>Sign In</strong></a>
+                                <a class="nav-link active" aria-current="page" href="/signin">Sign In</a>
                             </li>
                         </ul>
                     </div>
@@ -57,7 +57,13 @@
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
+                                    <img
+                                            <#if image??>
+                                                src="${image}"
+                                                <#else>
+                                                    src="https://writersandfreeexpression.files.wordpress.com/2021/06/erich.jpg?w=1024"
+                                            </#if>
+                                            width="40" height="40" class="rounded-circle">
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="/profile">Your Profile</a>
