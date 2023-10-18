@@ -3,34 +3,39 @@ package ru.kpfu.itis.solopov.net.servlet;
 import ru.kpfu.itis.solopov.net.dto.UserDto;
 import ru.kpfu.itis.solopov.net.service.Impl.UserServiceImpl;
 import ru.kpfu.itis.solopov.net.service.UserService;
+import ru.kpfu.itis.solopov.net.util.CloudinaryUploaderUtil;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.time.LocalDate;
 
+
+
 @WebServlet(name = "editUserProfileServlet", urlPatterns = "/editprofile")
+@MultipartConfig(
+        maxFileSize = 5 * 1024 * 1024 * 1024,
+        maxRequestSize = 10 * 1024 * 1024 * 1024
+)
+
 public class EditUserProfileServlet extends HttpServlet {
     UserService userService = new UserServiceImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         req.getRequestDispatcher("edituserprofile.ftl").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        changeProfileInfo(req);
+        updateProfileInfo(req, resp);
 
         req.getRequestDispatcher("userprofile.ftl").forward(req, resp);
     }
 
-    private void changeProfileInfo(HttpServletRequest req) {
+    private void updateProfileInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession httpSession = req.getSession();
         UserDto userDto = (UserDto) httpSession.getAttribute("user");
 
@@ -44,6 +49,16 @@ public class EditUserProfileServlet extends HttpServlet {
 
         httpSession.setAttribute("dateOfBirth", userDto.getBirthDate().toString());
 
+        String imageURL = CloudinaryUploaderUtil.uploadFile(req);
+        setImageCookie(resp, imageURL);
+        httpSession.setAttribute("image", imageURL);
+
         userService.update(userDto);
+    }
+
+    private void setImageCookie(HttpServletResponse resp, String imageURL) {
+        Cookie cookie = new Cookie("image", imageURL);
+        cookie.setMaxAge(60 * 60 * 24 * 365 * 10);
+        resp.addCookie(cookie);
     }
 }

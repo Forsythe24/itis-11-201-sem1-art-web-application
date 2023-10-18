@@ -12,7 +12,7 @@
                         <div class="col-md-8 border-right">
                                         <div class="p-3 py-5">
                                                 <div class="d-flex justify-content-center align-items-center mb-3">
-                                                        <h4 class="text-right">Profile</h4>
+                                                        <h4 class="text-right text-uppercase">Your profile</h4>
                                                 </div>
                                                 <div class="card border-2" style="border-radius: 1rem; background-color: #e6be8a; border-color: black" >
                                                         <div class="card-body p-5 text-start">
@@ -27,8 +27,8 @@
                                                 </div>
                                         </div>
                                         <br>
-                                        <a href="/editprofile" class="mt-5 text-center"><button class="btn btn-outline-dark btn-lg px-5" type="button" style="background-color: #D2B48C; color: black; margin-left: 4.5rem">Edit</button></a>
-                                        <a href="/logout" class="mt-5 text-center"><button class="btn btn-outline-dark btn-lg px-5" type="button" style="background-color: #D2B48C; color: black; margin-left: 1.5rem">Log Out</button></a>
+                                        <a href="/editprofile" class="mt-5 text-center"><button class="btn btn-outline-dark btn-lg px-5 text-uppercase" type="button" style="background-color: #D2B48C; color: black; margin-left: 4.5rem">Edit</button></a>
+                                        <a href="/logout" class="mt-5 text-center"><button class="btn btn-outline-dark btn-lg px-5 text-uppercase" type="button" style="background-color: #D2B48C; color: black; margin-left: 1.5rem">Log Out</button></a>
                         </div>
                 </div>
         </div>

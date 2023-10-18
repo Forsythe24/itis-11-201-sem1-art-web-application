@@ -61,7 +61,6 @@
                 </div>
             </div>
         </#macro>
-
     <script src="/scripts/create-genre-option-list-based-on-age.js"></script>
     <script>
         $("#birth-date").change(function(){
