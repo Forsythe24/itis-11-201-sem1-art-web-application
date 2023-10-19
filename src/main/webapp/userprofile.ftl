@@ -1,6 +1,5 @@
 <html lang="en">
 <#include "base.ftl">
-<#include "/resources/css/styles.css">
 <body>
 <#macro title>user profile</#macro>
 <div class="container-fluid" style="background-color: #F5DEB3;">

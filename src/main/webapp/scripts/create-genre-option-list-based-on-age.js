@@ -5,14 +5,14 @@ const genrelist = ["Adventure Fiction", "Arts & New Media", "Biographies & Memoi
 "Romance", "Science & Philosophy", "Science Fiction", "Self Help", "Short Stories",
 "Spirituality", "Sports", "Travel", "Young Adult Fiction", "Crime", "Erotica", "Horror", "Mystery, Thriller & Suspense"]
 
-createOptions()
-function createOptions (){
+// createOptions()
+function createOptions (dateString){
     select = document.getElementById("select-genre");
     // genre = select.value
     removeOptions(select)
     var length = genrelist.length
-    date = document.getElementById("birth-date")
-    if (getAge(date.value) < 18 || date == null) {
+    // date = document.getElementById("birth-date")
+    if (getAge(dateString) < 18 || dateString == null) {
         length -= 4
     }
     for (var i = 0; i < length; i++) {

@@ -41,7 +41,6 @@ public class AutoAuthenticationFilter implements Filter {
                     UserDto userDto = userService.get(c.getValue());
                     httpSession.setAttribute("user", userDto);
                     httpSession.setAttribute("dateOfBirth", userDto.getBirthDate().toString());
-                    httpSession.setAttribute("userAuthorized", true);
 
                     isUserFound = true;
                 }

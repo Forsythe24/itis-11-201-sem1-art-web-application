@@ -1,5 +1,4 @@
 <html lang="en">
-<#include "/resources/css/styles.css">
 <#include "base.ftl">
 <head>
     <meta charset="utf-8" />

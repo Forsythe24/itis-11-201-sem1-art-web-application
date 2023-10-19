@@ -28,6 +28,7 @@
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <h4 class="text-right">Filling your profile</h4>
                                 </div>
+
                                 <div class="row mt-6">
 
                                     <div class="col-md-12"><label class="labels">Name you're writing under</label><input type="text" class="form-control" name="username" placeholder="pen name"></div>
@@ -63,9 +64,13 @@
         </#macro>
     <script src="/scripts/create-genre-option-list-based-on-age.js"></script>
     <script>
+        createOptions($("#birth-date").val())
+    </script>
+    <script>
         $("#birth-date").change(function(){
-            $.get("/ajax/setbirthdate?birth_date=" + $("#birth-date").val(),
-                createOptions())
+            let dateOfBirth= $("#birth-date").val();
+            $.get("/ajax/setbirthdate?birth_date=" + dateOfBirth,
+                createOptions(dateOfBirth))
         });
     </script>
 

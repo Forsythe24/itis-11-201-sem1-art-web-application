@@ -34,7 +34,6 @@ public class SignInServlet extends HttpServlet {
         if (userDto != null) {
             httpSession.setAttribute("user", userDto);
             httpSession.setAttribute("dateOfBirth", userDto.getBirthDate().toString());
-            httpSession.setAttribute("userAuthorized", true);
 
             if (rememberMe != null) {
                 setAutoAuthCookie(resp, login);
@@ -48,8 +47,6 @@ public class SignInServlet extends HttpServlet {
             }
 
             resp.sendRedirect("/profile");
-        } else {
-            httpSession.setAttribute("userAuthorized", false);
         }
     }
 

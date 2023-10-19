@@ -1,6 +1,5 @@
 <html lang="en">
 <#include "base.ftl">
-<#include "/resources/css/styles.css">
     <body>
         <#macro title>editing profile</#macro>
         <div class="container-fluid" style="background-color: #954535;">
@@ -58,10 +57,13 @@
 
         <script src="/scripts/create-genre-option-list-based-on-age.js"></script>
         <script>
+            createOptions($("#birth-date").val())
+        </script>
+        <script>
             $("#birth-date").change(function(){
                 let dateOfBirth= $("#birth-date").val();
                 $.get("/ajax/setbirthdate?birth_date=" + dateOfBirth,
-                    createOptions())
+                    createOptions(dateOfBirth))
             });
         </script>
 
