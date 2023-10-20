@@ -11,7 +11,6 @@ function createOptions (dateString){
     // genre = select.value
     removeOptions(select)
     var length = genrelist.length
-    // date = document.getElementById("birth-date")
     if (getAge(dateString) < 18 || dateString == null) {
         length -= 4
     }
