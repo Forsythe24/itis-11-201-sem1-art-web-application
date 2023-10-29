@@ -28,8 +28,6 @@ public class SignInServlet extends HttpServlet {
 
         HttpSession httpSession = req.getSession();
 
-        Cookie[] cookies = req.getCookies();
-
 
         if (userDto != null) {
             httpSession.setAttribute("user", userDto);
@@ -37,13 +35,6 @@ public class SignInServlet extends HttpServlet {
 
             if (rememberMe != null) {
                 setAutoAuthCookie(resp, login);
-            }
-
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("image")) {
-                    resp.addCookie(cookie);
-                    httpSession.setAttribute("image", cookie.getValue());
-                }
             }
 
             resp.sendRedirect("/profile");

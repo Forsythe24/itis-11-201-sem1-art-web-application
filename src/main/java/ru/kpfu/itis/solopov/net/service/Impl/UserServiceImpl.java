@@ -16,14 +16,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDto> getAll() {
         return dao.getAll().stream().map(
-                u -> new UserDto(u.getUsername(), u.getEmail(), u.getGender(), u.getLogin(), u.getPassword(), u.getBirthDate(), u.getGenre(), u.getId())
+                u -> new UserDto(u.getUsername(), u.getEmail(), u.getGender(), u.getLogin(), u.getPassword(), u.getBirthDate(), u.getGenre(), u.getId(), u.getImage())
         ).collect(Collectors.toList());
     }
 
     @Override
     public UserDto get(String login) {
         User user = dao.get(login);
-        return new UserDto(user.getUsername(), user.getEmail(), user.getGender(), user.getLogin(), user.getPassword(), user.getBirthDate(), user.getGenre(), user.getId());
+        return new UserDto(user.getUsername(), user.getEmail(), user.getGender(), user.getLogin(), user.getPassword(), user.getBirthDate(), user.getGenre(), user.getId(), user.getImage());
     }
 
     @Override
@@ -40,6 +40,16 @@ public class UserServiceImpl implements UserService {
         user.setGender(userDto.getGender());
         user.setBirthDate(userDto.getBirthDate());
         user.setGenre(userDto.getGenre());
+        user.setImage(userDto.getImage());
         dao.update(user);
     }
+
+    @Override
+    public UserDto get(Long id) {
+        User user = dao.get(id);
+        return new UserDto(user.getUsername(), user.getEmail(), user.getGender(), user.getLogin(), user.getPassword(), user.getBirthDate(), user.getGenre(), user.getId(), user.getImage());
+    }
+
+
+
 }

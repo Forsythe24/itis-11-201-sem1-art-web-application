@@ -9,8 +9,10 @@ import java.util.List;
 
 public interface PublicationService {
     List<PublicationDto> getAll();
-    PublicationDto get(Long id);
+    PublicationDto get(long id);
     void save(Publication publication);
+
+    List<PublicationDto> getAllByTitle(String title);
 //    void update(PublicationDto publicationDto);
 }
 

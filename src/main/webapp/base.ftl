@@ -21,6 +21,7 @@
                 <div class="navbar-nav" style="font-size: 150%">
                     <a class="nav-item nav-link active" href="/homepage">Home<span class="sr-only"></span></a>
                     <a class="nav-item nav-link" href="/publications">Read</a>
+                    <a class="nav-item nav-link" href="/quotes">Quotes</a>
                     <#if user??>
                         <a class="nav-item nav-link" href="/makepublication">Write</a>
                     </#if>
@@ -36,14 +37,7 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img
-                                        <#if image??>
-                                            src="${image}"
-                                        <#else>
-                                            src="https://writersandfreeexpression.files.wordpress.com/2021/06/erich.jpg?w=1024"
-                                        </#if>
-                                        width="40" height="40" class="rounded-circle"
-                                >
+                                <img src="${user.image}" width="40" height="40" class="rounded-circle">
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="/profile">Your Profile</a>

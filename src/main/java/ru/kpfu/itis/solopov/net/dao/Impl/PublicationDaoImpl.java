@@ -2,7 +2,6 @@ package ru.kpfu.itis.solopov.net.dao.Impl;
 
 import ru.kpfu.itis.solopov.net.dao.Dao;
 import ru.kpfu.itis.solopov.net.model.Publication;
-import ru.kpfu.itis.solopov.net.model.User;
 import ru.kpfu.itis.solopov.net.util.DatabaseConnectionUtil;
 
 import java.sql.*;
@@ -11,6 +10,60 @@ import java.util.List;
 
 public class PublicationDaoImpl implements Dao<Publication> {
     private final Connection connection = DatabaseConnectionUtil.getConnection();
+
+    @Override
+    public Publication get(long id) {
+        try {
+            Statement statement = connection.createStatement();
+            String sql = "SELECT * from publication WHERE id = " + "\'" + id + "\'";
+            ResultSet resultSet = statement.executeQuery(sql);
+            resultSet.next();
+            Publication publication = new Publication(
+                    resultSet.getLong("id"),
+                    resultSet.getLong("user_id"),
+                    resultSet.getString("title"),
+                    resultSet.getString("publ_text"),
+                    resultSet.getDate("publ_date").toLocalDate(),
+                    resultSet.getTime("publ_time").toLocalTime(),
+                    resultSet.getString("genre"),
+                    resultSet.getString("description"),
+                    resultSet.getString("image")
+            );
+            return publication;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Publication> getAllByTitle(String title) {
+        try {
+            Statement statement = connection.createStatement();
+            String sql = "SELECT * from publication WHERE title = " + "\'" + title + "\'";
+            ResultSet resultSet = statement.executeQuery(sql);
+            List<Publication> publications = new ArrayList<>();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    publications.add(
+                            new Publication(
+                                    resultSet.getLong("id"),
+                                    resultSet.getLong("user_id"),
+                                    resultSet.getString("title"),
+                                    resultSet.getString("publ_text"),
+                                    resultSet.getDate("publ_date").toLocalDate(),
+                                    resultSet.getTime("publ_time").toLocalTime(),
+                                    resultSet.getString("genre"),
+                                    resultSet.getString("description"),
+                                    resultSet.getString("image")
+                            )
+                    );
+                }
+            }
+            return publications;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public Publication get(String login) {
         return null;

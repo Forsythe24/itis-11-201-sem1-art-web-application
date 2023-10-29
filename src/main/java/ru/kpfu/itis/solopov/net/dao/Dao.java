@@ -1,9 +1,9 @@
 package ru.kpfu.itis.solopov.net.dao;
 
 import java.util.List;
-import java.util.Map;
 
 public interface Dao<T> {
+    T get(long id);
 
     T get(String login);
 

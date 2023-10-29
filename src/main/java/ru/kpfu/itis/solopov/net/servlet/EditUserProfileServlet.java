@@ -39,26 +39,20 @@ public class EditUserProfileServlet extends HttpServlet {
         HttpSession httpSession = req.getSession();
         UserDto userDto = (UserDto) httpSession.getAttribute("user");
 
+        String image = CloudinaryUploaderUtil.uploadFile(req);
+
         userDto.setUsername(req.getParameter("username"));
         userDto.setEmail(req.getParameter("email"));
         userDto.setGender(req.getParameter("gender"));
         userDto.setGenre(req.getParameter("genre"));
+        userDto.setImage(image);
 
         LocalDate birthDate = LocalDate.parse(req.getParameter("birth_date"));
         userDto.setBirthDate(birthDate);
 
         httpSession.setAttribute("dateOfBirth", userDto.getBirthDate().toString());
 
-        String imageURL = CloudinaryUploaderUtil.uploadFile(req);
-        setImageCookie(resp, imageURL);
-        httpSession.setAttribute("image", imageURL);
 
         userService.update(userDto);
-    }
-
-    private void setImageCookie(HttpServletResponse resp, String imageURL) {
-        Cookie cookie = new Cookie("image", imageURL);
-        cookie.setMaxAge(60 * 60 * 24 * 365 * 10);
-        resp.addCookie(cookie);
     }
 }

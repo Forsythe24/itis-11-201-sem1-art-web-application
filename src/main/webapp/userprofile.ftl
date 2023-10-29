@@ -6,7 +6,7 @@
         <div class="container mt-5" style="height: 100%";>
                 <div class="row">
                         <div class="col-md-3 border-right">
-                                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" height="150px" src="${image}"><span class="font-weight-bold">${user.username}</span><span class="text-black-50">${user.email}</span><span> </span></div>
+                                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" height="150px" src="${user.image}"><span class="font-weight-bold">${user.username}</span><span class="text-black-50">${user.email}</span></div>
                         </div>
                         <div class="col-md-8 border-right">
                                         <div class="p-3 py-5">

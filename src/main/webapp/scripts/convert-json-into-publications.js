@@ -1,4 +1,7 @@
-function parseJsonArrayIntoPublications(strData) {
+
+function convertJsonIntoPublications(strData){
+    divParent = document.getElementById('row-list')
+    divParent.innerHTML = ''
     const jsonData = JSON.parse(strData)
 
     for(let i = jsonData.length - 1; i >= 0; i--) {
@@ -26,19 +29,26 @@ function parseJsonArrayIntoPublications(strData) {
 
         let a = document.createElement('a')
         a.className = "btn btn-primary"
-        a.href = "/publication"
+        a.href = "/publication?publ_id=" + jsonData[i].id
         a.innerText = 'Read'
+
+        let pGenre = document.createElement('p')
+        pGenre.className = 'text-black-50 text-end'
+        pGenre.innerText = jsonData[i].genre
+        // spanGenre.style.marginLeft = "13.5rem"
+
+
 
         divBody.appendChild(h5)
         divBody.appendChild(p)
         divBody.appendChild(a)
+        divBody.appendChild(pGenre)
 
         divCard.appendChild(img)
         divCard.appendChild(divBody)
 
         divCol.appendChild(divCard)
 
-        divParent = document.getElementById('row-list')
         divParent.appendChild(divCol)
     }
 

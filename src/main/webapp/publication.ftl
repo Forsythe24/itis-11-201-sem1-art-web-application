@@ -1,5 +1,7 @@
 <html lang="en">
 <#include "/resources/css/publication-styles.css">
+<#include "base.ftl">
+<#macro title>${publication.title}</#macro>
 
 <head>
     <meta charset="UTF-8" />
@@ -11,138 +13,112 @@
 </head>
 
 <body>
-    <div id="main-content" class="blog-page">
-        <div class="container">
+    <div id="main-content" class="blog-page" style="margin-top: 5.0rem;">
+        <div class="container-fluid">
             <div class="row clearfix">
-                <div class="col-lg-8 col-md-12 left-box">
+                <div class="col-lg-9 col-md-12 left-box">
                     <div class="card single_post">
                         <div class="body">
                             <div class="img-post">
-                                <img class="d-block img-fluid" src="https://www.bootdey.com/image/800x280/87CEFA/000000" alt="First slide">
+                                <img class="d-block img-fluid" src="${publication.image}" alt="First slide">
                             </div>
-                            <h3><a href="blog-details.html">All photographs are accurate</a></h3>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                            <h3><a href="blog-details.html">${publication.title}</a></h3>
+                            <p>${publication.text}</p>
                         </div>
                     </div>
                     <div class="card">
                         <div class="header">
-                            <h2>Comments 3</h2>
+                            <h3>Critique</h3>
                         </div>
                         <div class="body">
-                            <ul class="comment-reply list-unstyled">
-                                <li class="row clearfix">
-                                    <div class="icon-box col-md-2 col-4"><img class="img-fluid img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Awesome Image"></div>
-                                    <div class="text-box col-md-10 col-8 p-l-0 p-r0">
-                                        <h5 class="m-b-0">Gigi Hadid </h5>
-                                        <p>Why are there so many tutorials on how to decouple WordPress? how fast and easy it is to get it running (and keep it running!) and its massive ecosystem. </p>
-                                        <ul class="list-inline">
-                                            <li><a href="javascript:void(0);">Mar 09 2018</a></li>
-                                            <li><a href="javascript:void(0);">Reply</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="row clearfix">
-                                    <div class="icon-box col-md-2 col-4"><img class="img-fluid img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="Awesome Image"></div>
-                                    <div class="text-box col-md-10 col-8 p-l-0 p-r0">
-                                        <h5 class="m-b-0">Christian Louboutin</h5>
-                                        <p>Great tutorial but few issues with it? If i try open post i get following errors. Please can you help me?</p>
-                                        <ul class="list-inline">
-                                            <li><a href="javascript:void(0);">Mar 12 2018</a></li>
-                                            <li><a href="javascript:void(0);">Reply</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="row clearfix">
-                                    <div class="icon-box col-md-2 col-4"><img class="img-fluid img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="Awesome Image"></div>
-                                    <div class="text-box col-md-10 col-8 p-l-0 p-r0">
-                                        <h5 class="m-b-0">Kendall Jenner</h5>
-                                        <p>Very nice and informative article. In all the years I've done small and side-projects as a freelancer, I've ran into a few problems here and there.</p>
-                                        <ul class="list-inline">
-                                            <li><a href="javascript:void(0);">Mar 20 2018</a></li>
-                                            <li><a href="javascript:void(0);">Reply</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
+                            <ul class="comment-reply list-unstyled" id="comment-container">
                             </ul>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="header">
-                            <h2>Leave a reply <small>Your email address will not be published. Required fields are marked*</small></h2>
-                        </div>
-                        <div class="body">
-                            <div class="comment-form">
-                                <form class="row clearfix">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Your Name">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Email Address">
-                                        </div>
-                                    </div>
+                    <#if user??>
+                        <div class="card">
+                            <div class="header">
+                                <h3>You can write your critique here</h3>
+                            </div>
+                            <div class="body">
+                                <div class="comment-form">
                                     <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <textarea rows="4" class="form-control no-resize" placeholder="Please type what you want..."></textarea>
-                                        </div>
-                                        <button type="submit" class="btn btn-block btn-primary">SUBMIT</button>
+                                        <form action="publication" method="post">
+                                            <div class="form-group">
+                                                <textarea rows="4" class="form-control no-resize" placeholder="Please type what you want..." name="text"></textarea>
+                                            </div>
+                                            <input type="text" id="text" class="form-control" name="publ_id" value="${publication.id}" style="visibility: hidden;">
+                                            <button type="submit" id="comment-button" class="btn btn-block btn-primary">PRINT</button>
+                                        </form>
                                     </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-12 right-box">
-                    <div class="card">
-                        <div class="body search">
-                            <div class="input-group m-b-0">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-search"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Search...">
                             </div>
                         </div>
-                    </div>
+                        <#else>
+                    </#if>
+                </div>
+                <div class="col-lg-3 col-md-12 right-box">
                     <div class="card">
-                        <div class="header">
-                            <h2>Genre</h2>
-                        </div>
-                        <div class="body widget">
-                            <ul class="list-unstyled categories-clouds m-b-0">
-                                <li><a href="javascript:void(0);">History</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="header">
-                            <h2>Popular Posts</h2>
-                        </div>
                         <div class="body widget popular-post">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="single_post">
-                                        <p class="m-b-0">Apple Introduces Search Ads Basic</p>
-                                        <span>jun 22, 2018</span>
-                                        <div class="img-post">
-                                            <img src="https://www.bootdey.com/image/280x280/87CEFA/000000" alt="Awesome Image">
-                                        </div>
-                                    </div>
-                                    <div class="single_post">
-                                        <p class="m-b-0">new rules, more cars, more races</p>
-                                        <span>jun 8, 2018</span>
-                                        <div class="img-post">
-                                            <img src="https://www.bootdey.com/image/280x280/87CEFA/000000" alt="Awesome Image">
-                                        </div>
+                                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                                        <h3>Author</h3>
+                                        <img class="rounded-circle mt-5" width="200px" height="200px" src="${author_image}">
+                                        <span class="font-weight-bold">${author_name}</span>
+                                        <span class="text-black-50">${author_email}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="card">
+                        <div class="body widget popular-post">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                                        <h3>Story info</h3>
+                                        <span class="font-weight-bold">Published on: <span class="text-black-50"><i>${publication.date}</i></span></span>
+                                        <span class="font-weight-bold">Genre: <span class="text-black-50"><i></id>${publication.genre}</i></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-outline-dark btn-lg px-5 text-uppercase" style="margin-bottom: 1.5rem; margin-left: 1.5rem" type="submit">add to reading list</button>
+
                 </div>
             </div>
 
         </div>
     </div>
+    <script src="/scripts/parse-json-into-comments.js"></script>
+    <script>
+        $.get("/ajax/comments?publ_id=" + ${publication.id}, function (response) {
+            parseJsonIntoComments(response)
+        })
+    </script>
+<#--    <script>-->
+<#--        $('#comment-button').click(function() {-->
+<#--            $.ajax({-->
+<#--                type: 'POST',-->
+<#--                data: {-->
+<#--                    'publ_id' : ${publication.id}-->
+<#--                    'text' : $("#text").val()-->
+<#--                },-->
+<#--                success: function(response) {-->
+<#--                    alert(response)-->
+<#--                },-->
+<#--                error: function(){-->
+<#--                    alert('hi')-->
+<#--                },-->
+<#--                url: '/ajax/comments',-->
+<#--                cache:false-->
+<#--            });-->
+<#--        });-->
+<#--    </script>-->
+
+
 </body>
+</html>

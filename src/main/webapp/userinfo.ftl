@@ -62,7 +62,7 @@
                 </div>
             </div>
         </#macro>
-    <script src="/scripts/create-genre-option-list-based-on-age.js"></script>
+    <script src="/scripts/get-genre-option-list-based-on-age.js"></script>
     <script>
         createOptions($("#birth-date").val())
     </script>

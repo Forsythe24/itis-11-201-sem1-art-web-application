@@ -12,8 +12,9 @@ public class UserDto {
     private LocalDate birthDate;
     private Long id;
     private String genre;
+    private String image;
 
-    public UserDto(String username, String email, String gender, String login, String password, LocalDate birthDate, String genre) {
+    public UserDto(String username, String email, String gender, String login, String password, LocalDate birthDate, String genre, String image) {
         this.username = username;
         this.email = email;
         this.gender = gender;
@@ -21,9 +22,10 @@ public class UserDto {
         this.password = password;
         this.birthDate = birthDate;
         this.genre = genre;
+        this.image = image;
     }
 
-    public UserDto(String username, String email, String gender, String login, String password, LocalDate birthDate, String genre, Long id) {
+    public UserDto(String username, String email, String gender, String login, String password, LocalDate birthDate, String genre, Long id, String image) {
         this.username = username;
         this.email = email;
         this.gender = gender;
@@ -32,6 +34,15 @@ public class UserDto {
         this.birthDate = birthDate;
         this.id = id;
         this.genre = genre;
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getUsername() {

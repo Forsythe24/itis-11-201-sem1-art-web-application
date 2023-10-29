@@ -30,26 +30,17 @@ public class AuthenticationInfoServlet extends HttpServlet {
         String email = (String) httpSession.getAttribute("email");
         String gender = (String) httpSession.getAttribute("gender");
         String genre = (String) httpSession.getAttribute("genre");
-        String imageURL = (String) httpSession.getAttribute("image");
+        String image = (String) httpSession.getAttribute("image");
         LocalDate birthDate = LocalDate.parse((CharSequence)httpSession.getAttribute("birth_date"));
 
 
-        UserDto userDto = new UserDto(username, email, gender, login, password, birthDate, genre);
+        UserDto userDto = new UserDto(username, email, gender, login, password, birthDate, genre, image);
 
         httpSession.setAttribute("user", userDto);
         httpSession.setAttribute("dateOfBirth", birthDate.toString());
-        httpSession.setAttribute("image", imageURL);
 
-        setImageCookie(resp, imageURL);
-
-        userService.save(new User(username, email, gender, login, password, birthDate, genre));
+        userService.save(new User(username, email, gender, login, password, birthDate, genre, image));
 
         resp.sendRedirect("/profile");
-    }
-
-    private void setImageCookie(HttpServletResponse resp, String imageURL) {
-        Cookie cookie = new Cookie("image", imageURL);
-        cookie.setMaxAge(60 * 60 * 24 * 365 * 10);
-        resp.addCookie(cookie);
     }
 }

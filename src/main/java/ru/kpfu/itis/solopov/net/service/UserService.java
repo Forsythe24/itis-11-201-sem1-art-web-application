@@ -8,6 +8,7 @@ import java.util.List;
 public interface UserService {
     List<UserDto> getAll();
     UserDto get(String login);
+    UserDto get(Long id);
     void save(User user);
     void update(UserDto userDto);
 }

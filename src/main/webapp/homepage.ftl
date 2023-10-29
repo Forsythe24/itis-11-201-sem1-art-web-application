@@ -3,8 +3,6 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
 </head>
 
 <#macro title>Home page</#macro>
@@ -36,9 +34,6 @@
                 <div class="col-lg-8">
                     <h2>About this page</h2>
                     <p class="lead">LibrArea is a great place for writers to share their experience with each other</p>
-                    <ul>
-                        <li>Some links</li>
-                    </ul>
                 </div>
             </div>
         </div>

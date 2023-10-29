@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PublicationServiceImpl implements PublicationService {
-    private final Dao<Publication> dao = new PublicationDaoImpl();
+    private final PublicationDaoImpl dao = new PublicationDaoImpl();
     @Override
     public List<PublicationDto> getAll() {
         return dao.getAll().stream().map(
@@ -20,12 +20,30 @@ public class PublicationServiceImpl implements PublicationService {
     }
 
     @Override
-    public PublicationDto get(Long id) {
-        return null;
+    public PublicationDto get(long id) {
+        Publication publication = dao.get(id);
+        return new PublicationDto(
+                publication.getId(),
+                publication.getUserID(),
+                publication.getTitle(),
+                publication.getText(),
+                publication.getDate(),
+                publication.getTime(),
+                publication.getGenre(),
+                publication.getDescription(),
+                publication.getImage()
+        );
     }
 
     @Override
     public void save(Publication publication) {
         dao.save(publication);
+    }
+
+    @Override
+    public List<PublicationDto> getAllByTitle(String title) {
+        return dao.getAllByTitle(title).stream().map(
+                p -> new PublicationDto(p.getId(), p.getUserID(), p.getTitle(), p.getText(), p.getDate(), p.getTime(), p.getGenre(), p.getDescription(), p.getImage())
+        ).collect(Collectors.toList());
     }
 }
