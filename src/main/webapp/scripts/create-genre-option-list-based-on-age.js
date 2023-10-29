@@ -12,6 +12,14 @@ function createOptionsWithRecentPublications(dateString) {
     genreArr.reverse()
     createOptions(dateString)
 }
+
+function createOptionsForAuthorizedUser(dateString) {
+    genreArr.reverse()
+    genreArr.push("My Works")
+    genreArr.push("Recent Publications")
+    genreArr.reverse()
+    createOptions(dateString)
+}
 function createOptions (dateString){
     select = document.getElementById("select-genre");
     removeOptions(select)

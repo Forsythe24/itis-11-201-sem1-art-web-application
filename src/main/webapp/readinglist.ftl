@@ -4,47 +4,25 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 </head>
-<#macro title>quotes</#macro>
+<#macro title>Reading List</#macro>
 
 <body>
 <div class="container" style="margin-top: 10.5rem">
-    <div class="row justify-content-center align-content-center">
-        <button type="button" id="one-quote" class="col-4 btn btn-ultra-voilet btn-lg">Get a life-changing quote!</button>
-    </div>
-    <br>
-    <div class="row justify-content-center align-content-center">
-        <button type="button" id="all-quotes" class="col-2 btn btn-ultra-voilet btn-lg">All quotes</button>
-    </div>
-
 </div>
 <div class="list-group" id="list" style="margin-top: 5.5rem">
-    <a class= "list-group-item list-group-item-action flex-column">
-        <p class="mb-1" style="font-size: 25px; font-family: 'Times New Roman',serif">— Be mindful when it comes to your words. A string of some that don't mean much to you, may stick with someone else for a lifetime.</p>
-        <p class="text-muted text-end"><i>Rachel Wolchin</i></p>
+    <a class= "list-group-item list-group-item-action flex-column" href="/homepage">
+        <img src="https://images1.resources.foxtel.com.au/store2/mount1/16/3/85td8.jpg" height="180px" width = "280px">
+        <span class="mb-1" style="font-size: 25px;">— Be mindful when it comes to your words. A string of some that <span class="text-muted text-end" style="margin-left: 1.0rem"><i>Rachel Wolchin</i></span></span>
     </a>
 </div>
 
-<script src="/scripts/turn-json-into-quotes.js"></script>
+<script src="scripts/parse-json-into-reading-list.js"></script>
 <script>
-    $("#all-quotes").click(function(){
-        $.get("/ajax/getquotes?number=all", function (response) {
-            turnJsonIntoQuotes(response)
-        })
+    $.get("/ajax/getreadinglist", function(response) {
+        parseJsonIntoReadingList(response)
     })
 </script>
 
-<script src="/scripts/turn-json-into-quotes.js"></script>
-<script>
-    $("#one-quote").click(function(){
-        $.get("/ajax/getquotes?number=one", function (response) {
-            turnJsonIntoQuotes(response)
-        })
-    })
-</script>
-
-<script>
-
-</script>
 
 </body>
 

@@ -85,20 +85,51 @@
                             </div>
                         </div>
                     </div>
+                    <#if user??>
+                        <button class="btn btn-outline-dark btn-lg px-5 text-uppercase" style="margin-bottom: 1.5rem; margin-left: 1.5rem" type="button" id="btn-add-to-reading-list">add to reading list</button>
 
-                    <button class="btn btn-outline-dark btn-lg px-5 text-uppercase" style="margin-bottom: 1.5rem; margin-left: 1.5rem" type="submit">add to reading list</button>
-
+                        <#if user.id == author_id>
+                            <a href="/publications"><button class="btn btn-outline-dark btn-lg px-5 text-uppercase" style="margin-bottom: 1.5rem; margin-left: 1.5rem; color: red; border-color: red" type="button" id="btn-delete">delete publication</button></a>
+                            <a href="/homepage"><button class="btn btn-outline-dark btn-lg px-5 text-uppercase" style="margin-bottom: 1.5rem; margin-left: 6.0rem; color: blue; border-color: blue" type="button" id="btn-edit">edit</button></a>
+                        </#if>
+                        <#else>
+                    </#if>
                 </div>
             </div>
 
         </div>
     </div>
-    <script src="/scripts/parse-json-into-comments.js"></script>
+    <script src="/scripts/parse-json-string-into-comments.js"></script>
     <script>
         $.get("/ajax/comments?publ_id=" + ${publication.id}, function (response) {
-            parseJsonIntoComments(response)
+            parseJsonStringIntoComments(response)
         })
     </script>
+    <#if user??>
+        <script>
+            $.get("/ajax/check?publ_id=" + ${publication.id}, function(response) {
+                if (response === "yes") {
+                    $("#btn-add-to-reading-list").prop('disabled', true)
+                }
+            })
+        </script>
+
+        <script>
+            $("#btn-add-to-reading-list").click(function() {
+                $.get("/ajax/addtoreadinglist?publ_id=" + ${publication.id})
+                $("#btn-add-to-reading-list").prop('disabled', true)
+            })
+
+        </script>
+
+        <script>
+            $("#btn-delete").click(function() {
+                $.get("/ajax/deletepublication?publ_id=" + ${publication.id})
+            })
+        </script>
+
+        <#else>
+    </#if>
 <#--    <script>-->
 <#--        $('#comment-button').click(function() {-->
 <#--            $.ajax({-->

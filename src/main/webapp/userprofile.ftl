@@ -28,6 +28,7 @@
                                         <br>
                                         <a href="/editprofile" class="mt-5 text-center"><button class="btn btn-outline-dark btn-lg px-5 text-uppercase" type="button" style="background-color: #D2B48C; color: black; margin-left: 4.5rem">Edit</button></a>
                                         <a href="/logout" class="mt-5 text-center"><button class="btn btn-outline-dark btn-lg px-5 text-uppercase" type="button" style="background-color: #D2B48C; color: black; margin-left: 1.5rem">Log Out</button></a>
+                                        <a href="/readinglist" class="mt-5 text-center"><button class="btn btn-outline-dark btn-lg px-5 text-uppercase" type="button" style="background-color: #F0E68C; color: black; margin-left: 1.5rem">Reading List</button></a>
                         </div>
                 </div>
         </div>

@@ -46,4 +46,13 @@ public class PublicationServiceImpl implements PublicationService {
                 p -> new PublicationDto(p.getId(), p.getUserID(), p.getTitle(), p.getText(), p.getDate(), p.getTime(), p.getGenre(), p.getDescription(), p.getImage())
         ).collect(Collectors.toList());
     }
+
+    @Override
+    public void delete(long id) {
+        dao.delete(id);
+    }
+
+    @Override
+    public void update(PublicationDto publicationDto) {
+    }
 }

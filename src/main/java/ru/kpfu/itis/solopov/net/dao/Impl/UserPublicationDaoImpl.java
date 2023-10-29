@@ -69,4 +69,9 @@ public class UserPublicationDaoImpl implements Dao<UserPublication> {
     @Override
     public void update(UserPublication userPublication) {
     }
+
+    @Override
+    public void delete(long id) {
+
+    }
 }

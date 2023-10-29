@@ -121,13 +121,18 @@ public class UserDaoImpl implements Dao<User> {
             preparedStatement.setString(5, user.getPassword());
             preparedStatement.setDate(6, Date.valueOf(user.getBirthDate()));
             preparedStatement.setString(7, user.getGenre());
-            preparedStatement.setLong(8, user.getId());
-            preparedStatement.setString(9, user.getImage());
+            preparedStatement.setString(8, user.getImage());
+            preparedStatement.setLong(9, user.getId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void delete(long id) {
+
     }
 
 

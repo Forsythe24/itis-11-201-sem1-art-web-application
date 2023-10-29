@@ -32,18 +32,12 @@
         })
     })
 </script>
-
-<script src="/scripts/turn-json-into-quotes.js"></script>
 <script>
     $("#one-quote").click(function(){
         $.get("/ajax/getquotes?number=one", function (response) {
             turnJsonIntoQuotes(response)
         })
     })
-</script>
-
-<script>
-
 </script>
 
 </body>

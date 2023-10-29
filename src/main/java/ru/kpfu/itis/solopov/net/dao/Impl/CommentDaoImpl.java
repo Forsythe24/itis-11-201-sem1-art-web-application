@@ -99,4 +99,9 @@ public class CommentDaoImpl implements Dao<Comment> {
     public void update(Comment comment) {
 
     }
+
+    @Override
+    public void delete(long id) {
+
+    }
 }

@@ -44,7 +44,7 @@
             </div>
         </div>
     </div>
-    <script src="/scripts/get-genre-option-list-based-on-age.js"></script>
+    <script src="/scripts/create-genre-option-list-based-on-age.js"></script>
     <script type="text/javascript">
         createOptions($("#birth-date").val())
     </script>

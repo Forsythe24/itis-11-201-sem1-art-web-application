@@ -1,6 +1,6 @@
-function parseJsonIntoComments(strData){
+function parseJsonStringIntoComments(strData){
     const jsonData = JSON.parse(strData)
-    for(let i = jsonData.length - 1; i >= 0; i--) {
+    for(let i = 0; i < jsonData.length; i++) {
         let liRow = document.createElement('li')
         liRow.className = 'row clearfix'
 

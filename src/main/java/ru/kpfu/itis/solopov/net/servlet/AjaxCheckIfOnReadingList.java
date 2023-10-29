@@ -1,7 +1,7 @@
 package ru.kpfu.itis.solopov.net.servlet;
 
 import ru.kpfu.itis.solopov.net.dto.UserDto;
-import ru.kpfu.itis.solopov.net.model.UserPublication;
+import ru.kpfu.itis.solopov.net.dto.UserPublicationDto;
 import ru.kpfu.itis.solopov.net.service.Impl.UserPublicationServiceImpl;
 import ru.kpfu.itis.solopov.net.service.UserPublicationService;
 
@@ -12,9 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(urlPatterns = "/ajax/addtoreadinglist")
-public class AjaxAddToReadingList extends HttpServlet {
+@WebServlet(urlPatterns = "/ajax/check")
+public class AjaxCheckIfOnReadingList extends HttpServlet {
     private final UserPublicationService userPublicationService = new UserPublicationServiceImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,9 +23,22 @@ public class AjaxAddToReadingList extends HttpServlet {
         long userID = ((UserDto) httpSession.getAttribute("user")).getId();
 
         long publicationID = Long.parseLong(req.getParameter("publ_id"));
+        
+        List<UserPublicationDto> readingList = userPublicationService.getAllByUserID(userID);
 
-        System.out.println(userID + " " + publicationID);
+        if (isAlreadyOnList(readingList, publicationID)) {
+            resp.setContentType("plain/text");
+            resp.getWriter().write("yes");
+        }
 
-        userPublicationService.save(new UserPublication(userID, publicationID));
+    }
+
+    private boolean isAlreadyOnList(List<UserPublicationDto> readingList, long publicationID) {
+        for (UserPublicationDto userPublication : readingList) {
+            if (userPublication.getPublicationID() == publicationID) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -1,8 +1,6 @@
 package ru.kpfu.itis.solopov.net.service;
 
-import ru.kpfu.itis.solopov.net.dto.CommentDto;
 import ru.kpfu.itis.solopov.net.dto.UserPublicationDto;
-import ru.kpfu.itis.solopov.net.model.Comment;
 import ru.kpfu.itis.solopov.net.model.UserPublication;
 
 import java.util.List;

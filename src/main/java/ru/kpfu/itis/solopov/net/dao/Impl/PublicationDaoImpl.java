@@ -2,6 +2,7 @@ package ru.kpfu.itis.solopov.net.dao.Impl;
 
 import ru.kpfu.itis.solopov.net.dao.Dao;
 import ru.kpfu.itis.solopov.net.model.Publication;
+import ru.kpfu.itis.solopov.net.model.User;
 import ru.kpfu.itis.solopov.net.util.DatabaseConnectionUtil;
 
 import java.sql.*;
@@ -120,7 +121,33 @@ public class PublicationDaoImpl implements Dao<Publication> {
     }
 
     @Override
-    public void update(Publication publication) {
+    public void delete(long id) {String sql = "DELETE FROM publication WHERE id = " + "\'" + id + "\'";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    @Override
+    public void update(Publication publication) {
+        String sql = "UPDATE users set user_id = ?, title = ?, publ_text = ?, publ_date = ?, publ_time = ?, genre = ?, description = ?, image = ? where id = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setLong(1, publication.getUserID());
+            preparedStatement.setString(2, publication.getTitle());
+            preparedStatement.setString(3, publication.getText());
+            preparedStatement.setDate(4, Date.valueOf(publication.getDate()));
+            preparedStatement.setTime(5, Time.valueOf(publication.getTime()));
+            preparedStatement.setString(6, publication.getGenre());
+            preparedStatement.setString(7, publication.getDescription());
+            preparedStatement.setString(8, publication.getImage());
+            preparedStatement.setLong(9, publication.getId());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

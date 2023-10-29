@@ -29,7 +29,7 @@
         <input type="date" class="form-control" name="birth_date" id="birth-date" value="1970-01-01" style="visibility: hidden;">
     </div>
 
-    <script src="/scripts/get-genre-option-list-based-on-age.js"></script>
+    <script src="/scripts/create-genre-option-list-based-on-age.js"></script>
     <script>
         $("#select-genre").change(function() {
             let genre = $("#select-genre").val()
@@ -43,9 +43,16 @@
         })
     </script>
 
-    <script type="text/javascript">
-        createOptionsWithRecentPublications($("#birth-date").val())
-    </script>
+    <#if user??>
+        <script type="text/javascript">
+            createOptionsForAuthorizedUser($("#birth-date").val())
+        </script>
+        <#else>
+            <script type="text/javascript">
+                createOptionsWithRecentPublications($("#birth-date").val())
+            </script>
+    </#if>
+
 
     <script src="/scripts/convert-json-into-publications.js"></script>
     <script>

@@ -13,6 +13,9 @@ public interface PublicationService {
     void save(Publication publication);
 
     List<PublicationDto> getAllByTitle(String title);
-//    void update(PublicationDto publicationDto);
+
+    void delete(long id);
+    void update(PublicationDto publicationDto);
+
 }
 

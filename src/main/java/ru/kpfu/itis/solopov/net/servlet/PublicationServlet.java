@@ -41,10 +41,8 @@ public class PublicationServlet extends HttpServlet {
         httpSession.setAttribute("author_name", user.getUsername());
         httpSession.setAttribute("author_email", user.getEmail());
         httpSession.setAttribute("author_image", user.getImage());
+        httpSession.setAttribute("author_id", user.getId());
         httpSession.setAttribute("publication", publicationDto);
-
-//        req.setAttribute("from_publication", true);
-//        req.setAttribute("user_id", publicationDto.getUserID());
 
 
 

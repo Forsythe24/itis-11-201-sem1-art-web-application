@@ -3,6 +3,7 @@ package ru.kpfu.itis.solopov.net.servlet;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import ru.kpfu.itis.solopov.net.dto.PublicationDto;
+import ru.kpfu.itis.solopov.net.dto.UserDto;
 import ru.kpfu.itis.solopov.net.service.Impl.PublicationServiceImpl;
 import ru.kpfu.itis.solopov.net.service.PublicationService;
 
@@ -11,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -24,8 +26,6 @@ public class AjaxGetJSONPublicationsServlet extends HttpServlet {
 
         JSONArray jArray = new JSONArray();
 
-        System.out.println(title + " " + genre);
-
         List<PublicationDto> publications;
 
         if ((title == null || title.length() == 0) && (genre == null || genre.length() == 0 || genre.equals("Recent Publications"))) {
@@ -38,13 +38,25 @@ public class AjaxGetJSONPublicationsServlet extends HttpServlet {
             if (title != null && title.length() != 0 && genre != null && genre.length() != 0 && !genre.equals("Recent Publications")) {
                 publications = publicationService.getAllByTitle(title);
 
-                publications.forEach(
-                        p -> {
-                            if (p.getGenre().equals(genre)) {
-                                jArray.put(getJSONPublication(p));
+                if (!genre.equals("My Works")) {
+                    publications.forEach(
+                            p -> {
+                                if (p.getGenre().equals(genre)) {
+                                    jArray.put(getJSONPublication(p));
+                                }
                             }
-                        }
-                );
+                    );
+                } else {
+                    publications.forEach(
+                            p -> {
+                                UserDto user = (UserDto) req.getSession().getAttribute("user");
+
+                                if (p.getUserID() == user.getId()) {
+                                    jArray.put(getJSONPublication(p));
+                                }
+                            }
+                    );
+                }
             } else {
                 if (title != null && title.length() != 0) {
                     publications = publicationService.getAllByTitle(title);
@@ -55,13 +67,25 @@ public class AjaxGetJSONPublicationsServlet extends HttpServlet {
                 } else {
                     publications = publicationService.getAll();
 
-                    publications.forEach(
-                            p -> {
-                                if (p.getGenre().equals(genre)) {
-                                    jArray.put(getJSONPublication(p));
+                    if (!genre.equals("My Works")) {
+                        publications.forEach(
+                                p -> {
+                                    if (p.getGenre().equals(genre)) {
+                                        jArray.put(getJSONPublication(p));
+                                    }
                                 }
-                            }
-                    );
+                        );
+                    } else {
+                        publications.forEach(
+                                p -> {
+                                    UserDto user = (UserDto) req.getSession().getAttribute("user");
+
+                                    if (p.getUserID() == user.getId()) {
+                                        jArray.put(getJSONPublication(p));
+                                    }
+                                }
+                        );
+                    }
                 }
             }
 

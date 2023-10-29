@@ -75,4 +75,9 @@ public class QuoteDaoImpl implements Dao<Quote> {
     public void update(Quote publication) {
 
     }
+
+    @Override
+    public void delete(long id) {
+
+    }
 }
