@@ -1,4 +1,4 @@
-function parseJsonIntoReadingList(strData){
+function getReadingList(strData){
     let listGroup = document.getElementById('list')
     listGroup.innerHTML = ''
 
@@ -26,11 +26,22 @@ function parseJsonIntoReadingList(strData){
         spanGenre.style.fontStyle = 'italic'
         spanGenre.innerText = jsonData[i].genre
 
+        let deleteBtn = document.createElement('button')
+        deleteBtn.type = 'button'
+        deleteBtn.innerText = 'X'
+        deleteBtn.style.color = 'red'
+
+        let buttonLink = document.createElement('a')
+        buttonLink.href = "/deletefromreadinglist?publ_id=" + jsonData[i].publId
+
+        buttonLink.appendChild(deleteBtn)
+
         spanTitleAuthor.appendChild(spanGenre)
 
         a.appendChild(img)
         a.appendChild(spanTitleAuthor)
 
+        listGroup.appendChild(buttonLink)
         listGroup.appendChild(a)
     }
 }

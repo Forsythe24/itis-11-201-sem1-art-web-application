@@ -2,7 +2,6 @@ package ru.kpfu.itis.solopov.net.dao.Impl;
 
 import ru.kpfu.itis.solopov.net.dao.Dao;
 import ru.kpfu.itis.solopov.net.model.Publication;
-import ru.kpfu.itis.solopov.net.model.User;
 import ru.kpfu.itis.solopov.net.util.DatabaseConnectionUtil;
 
 import java.sql.*;
@@ -132,7 +131,7 @@ public class PublicationDaoImpl implements Dao<Publication> {
 
     @Override
     public void update(Publication publication) {
-        String sql = "UPDATE users set user_id = ?, title = ?, publ_text = ?, publ_date = ?, publ_time = ?, genre = ?, description = ?, image = ? where id = ?";
+        String sql = "UPDATE publication set user_id = ?, title = ?, publ_text = ?, publ_date = ?, publ_time = ?, genre = ?, description = ?, image = ? where id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setLong(1, publication.getUserID());

@@ -13,10 +13,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserPublicationServiceImpl implements UserPublicationService {
-    UserPublicationDaoImpl dao = new UserPublicationDaoImpl();
+    private final UserPublicationDaoImpl dao = new UserPublicationDaoImpl();
     @Override
     public List<UserPublicationDto> getAll() {
-        return null;
+        return dao.getAll().stream().map(
+                u -> new UserPublicationDto(u.getId(), u.getUserID(), u.getPublicationID())
+        ).collect(Collectors.toList());
     }
 
     @Override
@@ -34,5 +36,15 @@ public class UserPublicationServiceImpl implements UserPublicationService {
     @Override
     public void save(UserPublication userPublication) {
         dao.save(userPublication);
+    }
+
+    @Override
+    public void delete(long id) {
+        dao.delete(id);
+    }
+
+    @Override
+    public void deleteByIDs(long userID, long publicationID) {
+        dao.deleteByIDs(userID, publicationID);
     }
 }

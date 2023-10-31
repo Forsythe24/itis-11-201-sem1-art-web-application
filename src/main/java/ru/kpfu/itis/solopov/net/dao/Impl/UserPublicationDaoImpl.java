@@ -25,7 +25,26 @@ public class UserPublicationDaoImpl implements Dao<UserPublication> {
 
     @Override
     public List<UserPublication> getAll() {
-        return null;
+        try {
+            Statement statement = connection.createStatement();
+            String sql = "SELECT * from userpublication";
+            ResultSet resultSet = statement.executeQuery(sql);
+            List<UserPublication> userPublications = new ArrayList<>();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    userPublications.add(
+                            new UserPublication(
+                                    resultSet.getLong("id"),
+                                    resultSet.getLong("user_id"),
+                                    resultSet.getLong("publication_id")
+                            )
+                    );
+                }
+            }
+            return userPublications;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public List<UserPublication> getAllByUserID(long userID) {
@@ -72,6 +91,22 @@ public class UserPublicationDaoImpl implements Dao<UserPublication> {
 
     @Override
     public void delete(long id) {
+        String sql = "DELETE FROM userpublication WHERE id = " + "\'" + id + "\'";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    public void deleteByIDs(long userID, long publicationID) {
+        String sql = "DELETE FROM userpublication WHERE user_id = " + "\'" + userID + "\'" + "AND publication_id = " + "\'" + publicationID + "\'";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

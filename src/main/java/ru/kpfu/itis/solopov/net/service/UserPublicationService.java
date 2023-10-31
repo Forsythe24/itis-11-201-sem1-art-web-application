@@ -7,9 +7,14 @@ import java.util.List;
 
 public interface UserPublicationService {
     List<UserPublicationDto> getAll();
+
     List<UserPublicationDto> getAllByUserID(long id);
 
     UserPublicationDto get(long id);
+
     void save(UserPublication userPublication);
 
+    void delete(long id);
+
+    void deleteByIDs(long userID, long publicationID);
 }

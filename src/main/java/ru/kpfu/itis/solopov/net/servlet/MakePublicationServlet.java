@@ -1,5 +1,6 @@
 package ru.kpfu.itis.solopov.net.servlet;
 
+import org.jsoup.Jsoup;
 import ru.kpfu.itis.solopov.net.dto.UserDto;
 import ru.kpfu.itis.solopov.net.model.Publication;
 import ru.kpfu.itis.solopov.net.service.Impl.PublicationServiceImpl;
@@ -28,6 +29,10 @@ import static ru.kpfu.itis.solopov.net.util.CloudinaryUploaderUtil.uploadFile;
 )
 
 public class MakePublicationServlet extends HttpServlet {
+    private final String NEW_LINE = "<br>";
+    private final String HYPHEN = "&#8208;";
+    private final String DASH = "&#8211;";
+    private final String QUOTE = "<q>";
 
     private final UserService userService = new UserServiceImpl();
     private final PublicationService publicationService = new PublicationServiceImpl();
@@ -39,7 +44,14 @@ public class MakePublicationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String text = req.getParameter("text");
+
+        String text = req.getParameter("text")
+                .replace("\n", NEW_LINE)
+                .replace("-", HYPHEN)
+                .replace("–", DASH)
+                .replace("—", DASH)
+                .replace("“", QUOTE)
+                .replace("”", QUOTE);
         String description = req.getParameter("description");
         String genre = req.getParameter("genre");
         String title = req.getParameter("title");

@@ -54,5 +54,14 @@ public class PublicationServiceImpl implements PublicationService {
 
     @Override
     public void update(PublicationDto publicationDto) {
+        Publication publication = dao.get(publicationDto.getId());
+
+        publication.setTitle(publicationDto.getTitle());
+        publication.setText(publicationDto.getText());
+        publication.setGenre(publicationDto.getGenre());
+        publication.setDescription(publicationDto.getDescription());
+        publication.setImage(publicationDto.getImage());
+
+        dao.update(publication);
     }
 }

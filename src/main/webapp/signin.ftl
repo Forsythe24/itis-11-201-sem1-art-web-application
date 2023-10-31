@@ -49,7 +49,11 @@
 
                                 <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
                             </form>
-
+                            <#if failed_authentication_message??>
+                                <span id="authentication-warning" style="visibility: visible; color: red; font-size: 15px;">
+                                    ${failed_authentication_message}
+                                </span>
+                            </#if>
                         </div>
 
                         <div>

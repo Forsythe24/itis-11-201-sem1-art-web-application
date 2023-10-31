@@ -38,6 +38,10 @@ public class SignInServlet extends HttpServlet {
             }
 
             resp.sendRedirect("/profile");
+        } else {
+            httpSession.setAttribute("failed_authentication_message", "Incorrect login or password");
+            req.getRequestDispatcher("signin.ftl").forward(req, resp);
+            httpSession.removeAttribute("failed_authentication_message");
         }
     }
 
@@ -49,10 +53,14 @@ public class SignInServlet extends HttpServlet {
 
 
     private UserDto authenticate(String login, String password) {
-        UserDto userDto = userService.get(login);
-        String encrPassword = PasswordUtil.encrypt(password);
-        if(userDto.getPassword().equals(encrPassword)) {
-            return userDto;
+        try {
+            UserDto userDto = userService.get(login);
+            String encrPassword = PasswordUtil.encrypt(password);
+            if(userDto.getPassword().equals(encrPassword)) {
+                return userDto;
+            }
+        } catch (RuntimeException e) {
+            return null;
         }
 
         return null;

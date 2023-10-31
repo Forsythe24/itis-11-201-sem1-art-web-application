@@ -32,7 +32,6 @@ public class AjaxGetJSONReadingList extends HttpServlet {
 
         long userID = ((UserDto) httpSession.getAttribute("user")).getId();
         List<UserPublicationDto> readingList = userPublicationService.getAllByUserID(userID);
-
         JSONArray jsonArray = new JSONArray();
 
         for (UserPublicationDto userPublicationDto : readingList) {

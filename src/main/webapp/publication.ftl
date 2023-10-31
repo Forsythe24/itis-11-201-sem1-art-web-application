@@ -90,7 +90,7 @@
 
                         <#if user.id == author_id>
                             <a href="/publications"><button class="btn btn-outline-dark btn-lg px-5 text-uppercase" style="margin-bottom: 1.5rem; margin-left: 1.5rem; color: red; border-color: red" type="button" id="btn-delete">delete publication</button></a>
-                            <a href="/homepage"><button class="btn btn-outline-dark btn-lg px-5 text-uppercase" style="margin-bottom: 1.5rem; margin-left: 6.0rem; color: blue; border-color: blue" type="button" id="btn-edit">edit</button></a>
+                            <a href="/editpublication"><button class="btn btn-outline-dark btn-lg px-5 text-uppercase" style="margin-bottom: 1.5rem; margin-left: 6.0rem; color: blue; border-color: blue" type="button" id="btn-edit">edit</button></a>
                         </#if>
                         <#else>
                     </#if>
@@ -124,7 +124,10 @@
 
         <script>
             $("#btn-delete").click(function() {
-                $.get("/ajax/deletepublication?publ_id=" + ${publication.id})
+                $.ajax({
+                    url: "/ajax/deletepublication?publ_id=" + ${publication.id},
+                    type: 'DELETE',
+                });
             })
         </script>
 

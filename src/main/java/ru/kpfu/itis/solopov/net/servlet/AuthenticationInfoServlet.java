@@ -34,12 +34,10 @@ public class AuthenticationInfoServlet extends HttpServlet {
         LocalDate birthDate = LocalDate.parse((CharSequence)httpSession.getAttribute("birth_date"));
 
 
-        UserDto userDto = new UserDto(username, email, gender, login, password, birthDate, genre, image);
-
-        httpSession.setAttribute("user", userDto);
-        httpSession.setAttribute("dateOfBirth", birthDate.toString());
-
         userService.save(new User(username, email, gender, login, password, birthDate, genre, image));
+
+        httpSession.setAttribute("user", userService.get(login));
+        httpSession.setAttribute("dateOfBirth", birthDate.toString());
 
         resp.sendRedirect("/profile");
     }

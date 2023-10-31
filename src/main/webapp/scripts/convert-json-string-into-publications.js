@@ -1,5 +1,5 @@
 
-function convertJsonIntoPublications(strData){
+function convertJsonStringIntoPublications(strData){
     divParent = document.getElementById('row-list')
     divParent.innerHTML = ''
     const jsonData = JSON.parse(strData)
@@ -15,6 +15,8 @@ function convertJsonIntoPublications(strData){
         img.className = "card-img-top"
         img.src = jsonData[i].image
         img.alt = "Card image cap"
+        img.style.height = "250px"
+        img.style.width = "415px"
 
         let divBody = document.createElement('div')
         divBody.className = "card-body"
@@ -26,6 +28,7 @@ function convertJsonIntoPublications(strData){
         let p = document.createElement('p')
         p.className = "card-text"
         p.innerText = jsonData[i].description
+        p.style.height = "155px"
 
         let a = document.createElement('a')
         a.className = "btn btn-primary"

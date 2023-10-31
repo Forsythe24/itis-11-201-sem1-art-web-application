@@ -25,6 +25,16 @@
 
         <h2 class="my-4" id="current-filter">Recent Publications</h2>
         <div class="row" id="row-list">
+<#--            <div class="col-md-4 mb-4">-->
+<#--                <div class="card">-->
+<#--                    <img class="card-img-top" style="height: 250px; width: 415px" src="https://via.placeholder.com/300x200" alt="Card image cap">-->
+<#--                    <div class="card-body">-->
+<#--                        <h5 class="card-title">Blog post 1</h5>-->
+<#--                        <p class="card-text" style="height: 130px">This is a brief description of blog post 1.</p>-->
+<#--                        <a href="#" id="publ" class="btn btn-primary">Read More &rarr;</a>-->
+<#--                    </div>-->
+<#--                </div>-->
+<#--            </div>-->
         </div>
         <input type="date" class="form-control" name="birth_date" id="birth-date" value="1970-01-01" style="visibility: hidden;">
     </div>
@@ -38,7 +48,7 @@
             $("#current-filter").text(genre)
 
             $.get("/ajax/getpublications?genre=" + genre.replace("&", "%26") + "&title=" + title, function(response) {
-                convertJsonIntoPublications(response)
+                convertJsonStringIntoPublications(response)
             })
         })
     </script>
@@ -54,10 +64,10 @@
     </#if>
 
 
-    <script src="/scripts/convert-json-into-publications.js"></script>
+    <script src="/scripts/convert-json-string-into-publications.js"></script>
     <script>
         $.get("/ajax/getpublications", function (response) {
-                convertJsonIntoPublications(response)
+                convertJsonStringIntoPublications(response)
         })
 
     </script>
@@ -69,7 +79,7 @@
             let title = $("#title").val().replace("&", "%26")
 
             $.get("/ajax/getpublications?title=" + title + "&genre=" + genre, function(response) {
-                convertJsonIntoPublications(response)
+                convertJsonStringIntoPublications(response)
             })
         })
     </script>
