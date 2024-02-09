@@ -9,8 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements Dao<User> {
-    private final Connection connection = DatabaseConnectionUtil.getConnection();
+    private final Connection connection;
 
+    public UserDaoImpl(Connection connection) {
+        this.connection = connection;
+    }
     @Override
     public User get(long id) {
         try {

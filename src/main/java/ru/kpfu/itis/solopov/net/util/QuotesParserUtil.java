@@ -2,6 +2,7 @@ package ru.kpfu.itis.solopov.net.util;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import ru.kpfu.itis.solopov.net.dao.Impl.QuoteDaoImpl;
 import ru.kpfu.itis.solopov.net.dto.QuoteDto;
 import ru.kpfu.itis.solopov.net.model.Quote;
 import ru.kpfu.itis.solopov.net.service.Impl.QuoteServiceImpl;
@@ -15,7 +16,7 @@ import java.net.URL;
 
 public class QuotesParserUtil {
 
-    private static final QuoteService quoteService = new QuoteServiceImpl();
+    private static final QuoteService quoteService = new QuoteServiceImpl(new QuoteDaoImpl(DatabaseConnectionUtil.getConnection()));
 
     public static void main(String[] args) throws IOException {
         URL url = new URL("https://zenquotes.io/api/quotes ");

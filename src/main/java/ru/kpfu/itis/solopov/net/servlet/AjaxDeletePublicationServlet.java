@@ -16,8 +16,14 @@ import java.util.List;
 
 @WebServlet(urlPatterns = "/ajax/deletepublication")
 public class AjaxDeletePublicationServlet extends HttpServlet {
-    private final PublicationService publicationService = new PublicationServiceImpl();
-    private final UserPublicationService userPublicationService = new UserPublicationServiceImpl();
+    private UserPublicationService userPublicationService;
+    private PublicationService publicationService;
+
+    @Override
+    public void init() throws ServletException {
+        userPublicationService = (UserPublicationService) getServletContext().getAttribute("userPublicationService");
+        publicationService = (PublicationService) getServletContext().getAttribute("publicationService");
+    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req, resp);
@@ -35,4 +41,5 @@ public class AjaxDeletePublicationServlet extends HttpServlet {
             }
         }
     }
+
 }

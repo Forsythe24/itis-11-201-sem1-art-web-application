@@ -6,6 +6,7 @@ import ru.kpfu.itis.solopov.net.model.Publication;
 import ru.kpfu.itis.solopov.net.service.Impl.PublicationServiceImpl;
 import ru.kpfu.itis.solopov.net.service.Impl.UserServiceImpl;
 import ru.kpfu.itis.solopov.net.service.PublicationService;
+import ru.kpfu.itis.solopov.net.service.UserPublicationService;
 import ru.kpfu.itis.solopov.net.service.UserService;
 
 import javax.servlet.ServletException;
@@ -34,8 +35,15 @@ public class MakePublicationServlet extends HttpServlet {
     private final String DASH = "&#8211;";
     private final String QUOTE = "<q>";
 
-    private final UserService userService = new UserServiceImpl();
-    private final PublicationService publicationService = new PublicationServiceImpl();
+
+    private UserService userService;
+    private PublicationService publicationService;
+
+    @Override
+    public void init() throws ServletException {
+        userService = (UserService) getServletContext().getAttribute("userService");
+        publicationService = (PublicationService) getServletContext().getAttribute("publicationService");
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

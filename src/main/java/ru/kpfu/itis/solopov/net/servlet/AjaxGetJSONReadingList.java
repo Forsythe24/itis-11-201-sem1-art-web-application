@@ -23,9 +23,16 @@ import java.util.List;
 
 @WebServlet(urlPatterns = "/ajax/getreadinglist")
 public class AjaxGetJSONReadingList extends HttpServlet {
-    private final UserPublicationService userPublicationService = new UserPublicationServiceImpl();
-    private final PublicationService publicationService = new PublicationServiceImpl();
-    private final UserService userService = new UserServiceImpl();
+    private UserPublicationService userPublicationService;
+    private PublicationService publicationService;
+
+    private UserService userService;
+    @Override
+    public void init() throws ServletException {
+        userPublicationService = (UserPublicationService) getServletContext().getAttribute("userPublicationService");
+        publicationService = (PublicationService) getServletContext().getAttribute("publicationService");
+        userService = (UserService) getServletContext().getAttribute("userService");
+    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession httpSession = req.getSession();

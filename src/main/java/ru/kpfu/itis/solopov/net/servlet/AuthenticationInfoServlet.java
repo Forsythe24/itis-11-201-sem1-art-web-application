@@ -2,6 +2,7 @@ package ru.kpfu.itis.solopov.net.servlet;
 
 import ru.kpfu.itis.solopov.net.dto.UserDto;
 import ru.kpfu.itis.solopov.net.model.User;
+import ru.kpfu.itis.solopov.net.service.CommentService;
 import ru.kpfu.itis.solopov.net.service.Impl.UserServiceImpl;
 import ru.kpfu.itis.solopov.net.service.UserService;
 
@@ -13,8 +14,12 @@ import java.time.LocalDate;
 
 @WebServlet(name = "authInfoServlet", urlPatterns = "/authinfo")
 public class AuthenticationInfoServlet extends HttpServlet {
-    private final UserService userService = new UserServiceImpl();
+    private UserService userService;
+
     @Override
+    public void init() throws ServletException {
+        userService = (UserService) getServletContext().getAttribute("userService");
+    }    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("authenticationinfo.ftl").forward(req, resp);
     }

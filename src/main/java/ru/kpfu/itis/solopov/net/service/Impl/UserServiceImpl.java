@@ -1,8 +1,10 @@
 package ru.kpfu.itis.solopov.net.service.Impl;
 
 import ru.kpfu.itis.solopov.net.dao.Dao;
+import ru.kpfu.itis.solopov.net.dao.Impl.PublicationDaoImpl;
 import ru.kpfu.itis.solopov.net.dao.Impl.UserDaoImpl;
 import ru.kpfu.itis.solopov.net.dto.UserDto;
+import ru.kpfu.itis.solopov.net.model.Publication;
 import ru.kpfu.itis.solopov.net.model.User;
 import ru.kpfu.itis.solopov.net.service.UserService;
 import ru.kpfu.itis.solopov.net.util.PasswordUtil;
@@ -11,7 +13,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserServiceImpl implements UserService {
-    private final Dao<User> dao = new UserDaoImpl();
+    private final UserDaoImpl dao;
+    public UserServiceImpl(Dao<User> dao) {
+        this.dao = (UserDaoImpl) dao;
+    }
 
     @Override
     public List<UserDto> getAll() {

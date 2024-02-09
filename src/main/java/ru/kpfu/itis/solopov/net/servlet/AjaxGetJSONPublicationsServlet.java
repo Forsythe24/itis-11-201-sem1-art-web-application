@@ -6,6 +6,7 @@ import ru.kpfu.itis.solopov.net.dto.PublicationDto;
 import ru.kpfu.itis.solopov.net.dto.UserDto;
 import ru.kpfu.itis.solopov.net.service.Impl.PublicationServiceImpl;
 import ru.kpfu.itis.solopov.net.service.PublicationService;
+import ru.kpfu.itis.solopov.net.service.UserPublicationService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +19,12 @@ import java.util.List;
 
 @WebServlet(urlPatterns = "/ajax/getpublications")
 public class AjaxGetJSONPublicationsServlet extends HttpServlet {
-    private final PublicationService publicationService = new PublicationServiceImpl();
+    private PublicationService publicationService;
+
     @Override
+    public void init() throws ServletException {
+        publicationService = (PublicationService) getServletContext().getAttribute("publicationService");
+    }    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String title = req.getParameter("title");
         String genre = req.getParameter("genre");

@@ -7,6 +7,8 @@ import ru.kpfu.itis.solopov.net.dto.UserDto;
 import ru.kpfu.itis.solopov.net.service.CommentService;
 import ru.kpfu.itis.solopov.net.service.Impl.CommentServiceImpl;
 import ru.kpfu.itis.solopov.net.service.Impl.UserServiceImpl;
+import ru.kpfu.itis.solopov.net.service.PublicationService;
+import ru.kpfu.itis.solopov.net.service.UserPublicationService;
 import ru.kpfu.itis.solopov.net.service.UserService;
 
 import javax.servlet.ServletException;
@@ -19,8 +21,14 @@ import java.util.List;
 
 @WebServlet(urlPatterns = "/ajax/comments")
 public class AjaxGetUpdatedCommentsServlet extends HttpServlet {
-    private final CommentService commentService = new CommentServiceImpl();
-    private final UserService userService = new UserServiceImpl();
+    private UserService userService;
+    private CommentService commentService;
+
+    @Override
+    public void init() throws ServletException {
+        userService = (UserService) getServletContext().getAttribute("userService");
+        commentService = (CommentService) getServletContext().getAttribute("commentService");
+    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Long publId = Long.parseLong(req.getParameter("publ_id"));

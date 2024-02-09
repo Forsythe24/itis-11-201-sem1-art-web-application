@@ -10,9 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserPublicationDaoImpl implements Dao<UserPublication> {
-    
-    private final Connection connection = DatabaseConnectionUtil.getConnection();
 
+    private final Connection connection;
+
+    public UserPublicationDaoImpl(Connection connection) {
+        this.connection = connection;
+    }
     @Override
     public UserPublication get(long id) {
        return null;

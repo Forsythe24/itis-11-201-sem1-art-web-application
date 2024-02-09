@@ -4,6 +4,8 @@ import ru.kpfu.itis.solopov.net.dto.PublicationDto;
 import ru.kpfu.itis.solopov.net.dto.UserDto;
 import ru.kpfu.itis.solopov.net.service.Impl.PublicationServiceImpl;
 import ru.kpfu.itis.solopov.net.service.PublicationService;
+import ru.kpfu.itis.solopov.net.service.UserPublicationService;
+import ru.kpfu.itis.solopov.net.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -24,7 +26,13 @@ import static ru.kpfu.itis.solopov.net.util.CloudinaryUploaderUtil.uploadFile;
 )
 public class EditPublicationServlet extends HttpServlet {
 
-    private final PublicationService publicationService = new PublicationServiceImpl();
+    private PublicationService publicationService;
+
+    @Override
+    public void init() throws ServletException {
+        publicationService = (PublicationService) getServletContext().getAttribute("PublicationService");
+    }
+
     private final String NEW_LINE = "<br>";
     private final String HYPHEN = "&#8208;";
     private final String DASH = "&#8211;";

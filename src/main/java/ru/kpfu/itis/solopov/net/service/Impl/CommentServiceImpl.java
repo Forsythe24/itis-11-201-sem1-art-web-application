@@ -1,15 +1,20 @@
 package ru.kpfu.itis.solopov.net.service.Impl;
 
+import ru.kpfu.itis.solopov.net.dao.Dao;
 import ru.kpfu.itis.solopov.net.dao.Impl.CommentDaoImpl;
 import ru.kpfu.itis.solopov.net.dto.CommentDto;
 import ru.kpfu.itis.solopov.net.model.Comment;
 import ru.kpfu.itis.solopov.net.service.CommentService;
 
+import javax.servlet.ServletContextEvent;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CommentServiceImpl implements CommentService {
-    private final CommentDaoImpl dao = new CommentDaoImpl();
+public class  CommentServiceImpl implements CommentService {
+    private final CommentDaoImpl dao;
+    public CommentServiceImpl(Dao<Comment> dao) {
+        this.dao = (CommentDaoImpl) dao;
+    }
     @Override
     public List<CommentDto> getAll() {
         return dao.getAll().stream().map(

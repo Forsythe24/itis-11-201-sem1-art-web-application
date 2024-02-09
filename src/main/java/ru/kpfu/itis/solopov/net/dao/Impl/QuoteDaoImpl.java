@@ -9,8 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuoteDaoImpl implements Dao<Quote> {
-    private final Connection connection = DatabaseConnectionUtil.getConnection();
+    private final Connection connection;
 
+    public QuoteDaoImpl(Connection connection) {
+        this.connection = connection;
+    }
     @Override
     public Quote get(long id) {
         try {

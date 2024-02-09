@@ -2,6 +2,7 @@ package ru.kpfu.itis.solopov.net.servlet;
 
 import ru.kpfu.itis.solopov.net.dto.UserDto;
 import ru.kpfu.itis.solopov.net.service.Impl.UserServiceImpl;
+import ru.kpfu.itis.solopov.net.service.UserPublicationService;
 import ru.kpfu.itis.solopov.net.service.UserService;
 import ru.kpfu.itis.solopov.net.util.CloudinaryUploaderUtil;
 
@@ -21,7 +22,12 @@ import java.time.LocalDate;
 )
 
 public class EditUserProfileServlet extends HttpServlet {
-    UserService userService = new UserServiceImpl();
+    private UserService userService;
+
+    @Override
+    public void init() throws ServletException {
+        userService = (UserService) getServletContext().getAttribute("userService");
+    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("edituserprofile.ftl").forward(req, resp);

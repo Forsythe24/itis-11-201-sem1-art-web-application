@@ -12,7 +12,7 @@ public class DatabaseConnectionUtil {
     public static final String PASSWORD = "stilinski";
     private static Connection connection;
 
-    public static Connection getConnection() {
+    public static Connection getConnection() throws RuntimeException {
         if (connection == null) {
             try {
                 Class.forName(DRIVER);

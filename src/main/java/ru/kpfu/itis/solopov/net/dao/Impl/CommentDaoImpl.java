@@ -11,7 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommentDaoImpl implements Dao<Comment> {
-    private final Connection connection = DatabaseConnectionUtil.getConnection();
+
+    private final Connection connection;
+
+    public CommentDaoImpl(Connection connection) {
+        this.connection = connection;
+    }
 
     @Override
     public Comment get(long id) {

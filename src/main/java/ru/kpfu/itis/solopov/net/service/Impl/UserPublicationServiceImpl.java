@@ -1,9 +1,11 @@
 package ru.kpfu.itis.solopov.net.service.Impl;
 
+import ru.kpfu.itis.solopov.net.dao.Dao;
 import ru.kpfu.itis.solopov.net.dao.Impl.PublicationDaoImpl;
 import ru.kpfu.itis.solopov.net.dao.Impl.UserPublicationDaoImpl;
 import ru.kpfu.itis.solopov.net.dto.QuoteDto;
 import ru.kpfu.itis.solopov.net.dto.UserPublicationDto;
+import ru.kpfu.itis.solopov.net.model.Publication;
 import ru.kpfu.itis.solopov.net.model.User;
 import ru.kpfu.itis.solopov.net.model.UserPublication;
 import ru.kpfu.itis.solopov.net.service.UserPublicationService;
@@ -13,7 +15,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserPublicationServiceImpl implements UserPublicationService {
-    private final UserPublicationDaoImpl dao = new UserPublicationDaoImpl();
+    private final UserPublicationDaoImpl dao;
+    public UserPublicationServiceImpl(Dao<UserPublication> dao) {
+        this.dao = (UserPublicationDaoImpl) dao;
+    }
     @Override
     public List<UserPublicationDto> getAll() {
         return dao.getAll().stream().map(

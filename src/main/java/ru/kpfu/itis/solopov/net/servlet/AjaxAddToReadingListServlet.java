@@ -15,7 +15,13 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/ajax/addtoreadinglist")
 public class AjaxAddToReadingListServlet extends HttpServlet {
-    private final UserPublicationService userPublicationService = new UserPublicationServiceImpl();
+    private UserPublicationService userPublicationService;
+
+    @Override
+    public void init() throws ServletException {
+        userPublicationService = (UserPublicationService) getServletContext().getAttribute("userPublicationService");
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession httpSession = req.getSession();

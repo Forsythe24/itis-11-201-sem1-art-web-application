@@ -3,8 +3,10 @@ package ru.kpfu.itis.solopov.net.servlet;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import ru.kpfu.itis.solopov.net.dto.QuoteDto;
+import ru.kpfu.itis.solopov.net.service.PublicationService;
 import ru.kpfu.itis.solopov.net.service.QuoteService;
 import ru.kpfu.itis.solopov.net.service.Impl.QuoteServiceImpl;
+import ru.kpfu.itis.solopov.net.service.UserPublicationService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,8 +19,12 @@ import java.util.Random;
 
 @WebServlet(urlPatterns = "/ajax/getquotes")
 public class AjaxGetJSONQuotesServlet extends HttpServlet {
-    private final QuoteService quoteService = new QuoteServiceImpl();
+    private QuoteService quoteService;
+
     @Override
+    public void init() throws ServletException {
+        quoteService = (QuoteService) getServletContext().getAttribute("quoteService");
+    }    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String numberOfQuotes = req.getParameter("number");
 
